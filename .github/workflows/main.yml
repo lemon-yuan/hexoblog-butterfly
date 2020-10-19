@@ -1,0 +1,48 @@
+name: Blog CI/CD
+
+on:
+  push:
+    branches: 
+      - master
+
+
+jobs:
+  blog-cicd:
+    name: Hexo blog build & deploy
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Checkout codes
+        uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      
+      - name: Setup Hexo env
+        run: |
+          npm install hexo-cli -g
+          npm install
+      
+      - name: Configuration environment
+        run: |
+          sudo timedatectl set-timezone "Asia/Shanghai"
+          echo "$HEXO_DEPLOY_PRI" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan 81.70.29.224 >> ~/.ssh/konwn_hosts
+          git config --global user.name $GIT_USER
+          git config --global user.email $GIT_EMAIL
+          
+      - name: Generate public files
+        run: |
+          hexo clean
+          hexo g
+      
+      - name: Generate douban files
+        run: |
+          hexo douban -m
+      
+      - name: Deploy hexo
+        run: |
+          hexo deploy
