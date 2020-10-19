@@ -32,8 +32,8 @@ jobs:
           echo "$HEXO_DEPLOY_PRI" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan 81.70.29.224 >> ~/.ssh/known_hosts
-          git config --global user.name $GIT_USER
-          git config --global user.email $GIT_EMAIL
+          git config --global user.name "lemon-yuan"
+          git config --global user.email "804913657@qq.com"
           
       - name: Generate public files
         run: |
