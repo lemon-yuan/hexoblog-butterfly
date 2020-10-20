@@ -2,7 +2,7 @@
 title: 关于
 date: 2020-10-13 17:41:25
 comments: false
-top_img: https://blog-butterfly-cdn.mistill.com/img/top_img/about.webp
+top_img: https://upyun-cdn.mistill.com/img/top_img/about.webp
 ---
 ### 关于我
 性别男，爱好并非男，已毕业，无业游民。

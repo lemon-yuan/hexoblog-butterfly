@@ -6,11 +6,11 @@ tags:
   - hexo
   - aplayer
 description: 记录一下怎么给用了`HEXO`博客添加这款播放器，并配合`Meting`插件插入在线音乐。
-cover: https://blog-butterfly-cdn.mistill.com/img/post_cover/post_cover_018.webp
+cover: https://upyun-cdn.mistill.com/img/post_cover/post_cover_018.webp
 abbrlink: hexo-inject-aplayer
 ---
 
-![](https://blog-butterfly-cdn.mistill.com/img/post_img/df727d58ly1gg61wr553vj20v204w3yl.jpg)
+![](https://upyun-cdn.mistill.com/img/post_img/df727d58ly1gg61wr553vj20v204w3yl.jpg)
 
 `Aplayer`是一款漂亮的`html5`播放器，配合`Meting`插件可以直接在博客中插入QQ、网易云中的音乐。
 

@@ -7,7 +7,7 @@ tags:
     - github
     - github actions
 description: 随着本地Hexo目录的体积越来越大，个人pc发布到服务器需要各种命令，并且生成时间越来越长，现在就利用Github Actions来自动化这个流程。
-cover: https://blog-butterfly-cdn.mistill.com/img/post_cover/post_cover_022.webp
+cover: https://upyun-cdn.mistill.com/img/post_cover/post_cover_022.webp
 abbrlink: githubactions-deploy-host
 ---
 # 前言
@@ -28,7 +28,7 @@ abbrlink: githubactions-deploy-host
 # 仓库配置
 进入仓库`Setting`页面，在`Secrets`里面点击`New Secrets`;
 `Name`设置为`HEXO_DEPLOY_PRI`，`Value`值复制你使用SSH连接服务器对应的**私钥**，千万不能复制错。
-![](https://blog-butterfly-cdn.mistill.com/img/post_img/post_img_001.jpeg)
+![](https://upyun-cdn.mistill.com/img/post_img/post_img_001.jpeg)
 
 # 工作流配置
 {% note warning flat %}
@@ -118,6 +118,6 @@ jobs:
 
 # 查看执行情况
 - 在仓库页点击`Actions`即可查看执行情况。
-![](https://blog-butterfly-cdn.mistill.com/img/post_img/post_img_002.jpeg)
+![](https://upyun-cdn.mistill.com/img/post_img/post_img_002.jpeg)
 可以看到，交给`Github Actions`处理，速度很快。
 而我们只需要进行`git push`便可完成整个操作。

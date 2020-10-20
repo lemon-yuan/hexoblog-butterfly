@@ -5,7 +5,7 @@ tags:
   - html
 categories: 终身学习
 description: HTML基础复习
-cover: https://blog-butterfly-cdn.mistill.com/img/post_cover/post_cover_020.webp
+cover: https://upyun-cdn.mistill.com/img/post_cover/post_cover_020.webp
 abbrlink: review-html-base
 ---
 

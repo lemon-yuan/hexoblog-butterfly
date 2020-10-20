@@ -6,7 +6,7 @@ tags:
   - Linux
   - bash
 description: 学习一下&的用法
-cover: https://blog-butterfly-cdn.mistill.com/img/post_cover/post_cover_021.webp
+cover: https://upyun-cdn.mistill.com/img/post_cover/post_cover_021.webp
 abbrlink: linux-and-usage
 ---
 

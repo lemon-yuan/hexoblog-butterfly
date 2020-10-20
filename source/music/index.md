@@ -1,7 +1,7 @@
 ---
 title: music
 date: 2020-10-16 22:15:54
-top_img: https://blog-butterfly-cdn.mistill.com/img/top_img/music.webp
+top_img: https://upyun-cdn.mistill.com/img/top_img/music.webp
 aplayer: true
 ---
 {% note info no-icon simple %}

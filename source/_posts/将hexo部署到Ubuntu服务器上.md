@@ -7,7 +7,7 @@ tags:
   - 腾讯云
   - CVM
 description: 将博客迁移到腾讯云CVM做一个简单记录。
-cover: https://blog-butterfly-cdn.mistill.com/img/post_cover/post_cover_013.webp
+cover: https://upyun-cdn.mistill.com/img/post_cover/post_cover_013.webp
 abbrlink: hexo-lay-tencent-cvm
 ---
 

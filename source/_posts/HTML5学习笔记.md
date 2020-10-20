@@ -6,7 +6,7 @@ tags:
   - html5
 categories: 终身学习
 description: HTML5
-cover: https://blog-butterfly-cdn.mistill.com/img/post_cover/post_cover_019.webp
+cover: https://upyun-cdn.mistill.com/img/post_cover/post_cover_019.webp
 abbrlink: learn-html5-note
 ---
 

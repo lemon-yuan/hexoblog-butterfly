@@ -7,7 +7,7 @@ tags:
   - pjax
   - aplayer
 description: 解决pjax导致无法初始化aplayer播放器
-cover: https://blog-butterfly-cdn.mistill.com/img/post_cover/post_cover_014.webp
+cover: https://upyun-cdn.mistill.com/img/post_cover/post_cover_014.webp
 abbrlink: pjax-case-aplayer-erro
 ---
 

@@ -11,7 +11,7 @@ aplayer: true
 keywords: 
     - hexo
     - aplayer
-cover: https://blog-butterfly-cdn.mistill.com/img/post_cover/post_cover_017.webp
+cover: https://upyun-cdn.mistill.com/img/post_cover/post_cover_017.webp
 abbrlink: aplayer-render-html
 ---
 
@@ -20,9 +20,9 @@ abbrlink: aplayer-render-html
 <div class="aplayer" 
 data-name="七里香" 
 data-artist="周杰伦" 
-data-url="https://blog-butterfly-cdn.mistill.com/music/七里香 - 周杰伦.mp3" 
-data-cover="https://blog-butterfly-cdn.mistill.com/music/七里香 - 周杰伦.jpg" 
-data-lrc="https://blog-butterfly-cdn.mistill.com/music/七里香 - 周杰伦.lrc" 
+data-url="https://upyun-cdn.mistill.com/music/七里香 - 周杰伦.mp3" 
+data-cover="https://upyun-cdn.mistill.com/music/七里香 - 周杰伦.jpg" 
+data-lrc="https://upyun-cdn.mistill.com/music/七里香 - 周杰伦.lrc" 
 data-preload="none" 
 data-autoplay="false" 
 data-mutex="true"></div>

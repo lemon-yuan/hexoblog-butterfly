@@ -1,7 +1,7 @@
 ---
 title: 留言板
 date: 2020-10-13 16:59:50
-top_img: https://blog-butterfly-cdn.mistill.com/img/top_img/messageboard.webp
+top_img: https://upyun-cdn.mistill.com/img/top_img/messageboard.webp
 ---
 - 🉑欢迎光临小站
 - 📝所思所想所说
