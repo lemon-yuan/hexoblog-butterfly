@@ -113,7 +113,7 @@ deploy:
 # hexo-douban
 ## Docs: https://github.com/mythsman/hexo-douban
 douban:
-  user: 225005880
+  user: 180564840
   builtin: false
   # book:
   #   title: 'This is my book title'
