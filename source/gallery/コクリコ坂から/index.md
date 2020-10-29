@@ -54,4 +54,4 @@ top_img: https://vkceyugu.cdn.bspapp.com/VKCEYUGU-imgbed/6f2fb46c-1364-4fdf-ba2b
 ![](https://search.pstatic.net/common/?src=https://i.imgur.com/2QXUktz.jpg)
 ![](https://search.pstatic.net/common/?src=https://i.imgur.com/IwU0fXs.jpg)
 ![](https://search.pstatic.net/common/?src=https://i.imgur.com/7uZhetK.jpg)
-{% endgallery %}i.jpg.
+{% endgallery %}
