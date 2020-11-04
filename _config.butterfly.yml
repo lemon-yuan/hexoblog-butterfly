@@ -195,7 +195,6 @@ index_post_content:
 toc:
   enable: true
   number: true
-  auto_open: true # auto open the sidebar
 
 post_copyright:
   enable: true
@@ -324,6 +323,7 @@ valine:
   emojiCDN: //i0.hdslb.com/bfs/emote/ # emoji CDN
   enableQQ: true # enable the Nickname box to automatically get QQ Nickname and QQ Avatar
   requiredFields: nick,mail # required fields (nick/mail)
+  option: 
 
 # utterances
 # https://utteranc.es/
@@ -343,6 +343,10 @@ facebook_comments:
   pageSize: 10 # The number of comments to show
   order_by: social # social/time/reverse_time
   lang: en_US # Language en_US/zh_CN/zh_TW and so on
+
+# Twikoo
+# https://github.com/imaegoo/twikoo
+twikoo:
 
 # Chat Services
 # --------------------------------------
@@ -390,7 +394,7 @@ footer:
   owner:
     enable: true
     since: 2019
-  custom_text: 本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra"><img src="https://upyun-cdn.mistill.com/img/upyun_logo.png" align="absmiddle" width="59px" height="30px" style="margin-top:-5px;" /></a> 提供 CDN 加速服务
+  custom_text: 本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra"><img src="https://upyun-cdn.mistill.com/img/upyun_logo.png" align="absmiddle" width="59px" height="30px" style="margin-top:-4px;" /></a> 提供 CDN 加速服务
   copyright: true # Copyright of theme and framework
   ICP: # Chinese ICP License
     enable: true
@@ -623,6 +627,8 @@ preloader: false
 
 aside:
   enable: true
+  hide: false
+  button: true
   mobile: true # display on mobile
   position: left # left or right
   card_author:
@@ -862,6 +868,7 @@ CDN:
   disqusjs: https://cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js
   disqusjs_css: https://cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css
   utterances: https://utteranc.es/client.js
+  twikoo: https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js
 
   # share
   addtoany: https://static.addtoany.com/menu/page.js
