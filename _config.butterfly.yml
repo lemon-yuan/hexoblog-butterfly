@@ -857,9 +857,8 @@ inject:
     - <meta name="referrer" content="no-referrer-when-downgrade" />
   bottom:
     # - <script src="xxxx"></script>
-    # - <div class="aplayer no-destroy" data-id="002J4UUk29y8BY" data-server="tencent" data-type="artist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div>
+    - <div class="aplayer no-destroy" data-id="5089993118" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="true"  data-preload="none" data-autoplay="false" data-lrctype="0" muted></div>
     # - <script src="https://myhkw.cn/player/js/player.js" id="myhk" key="160273531660" m="1"></script>
-    - <div id="music" key="5fdabaf47180a" api="https://music.mistill.com"></div><script id="xplayer" src="https://music.mistill.com/api/PlayerJs/id/5fdabaf47180a" ></script>
 # CDN
 # Don't modify the following settings unless you know how they work
 # 非必要請不要修改
