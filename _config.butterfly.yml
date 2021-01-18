@@ -311,15 +311,15 @@ gitalk:
 # valine
 # https://valine.js.org
 valine:
-  appId: kxhhfNs1nucLmhm6tgVydbNn-MdYXbMMI # leancloud application app id
-  appKey: E0WlVMP7Hw4Qm88pGSnksDGS # leancloud application app key
+  appId: B4eeRv6qGIAGE4E4hjVldenw-gzGzoHsz # leancloud application app id
+  appKey: 2rzuS94nFvPK8CQynlN8hdMj # leancloud application app key
   pageSize: 10 # comment list page size
   avatar: monsterid # gravatar style https://valine.js.org/#/avatar
   lang: zh-CN # i18n: zh-CN/zh-TW/en/ja
   placeholder: 📌昵称框输入 QQ 自动获取昵称和头像\n👨‍🔧本站使用 Akismet 反垃圾评论\n🚀评论和回复支持 MarkDown 语法\n❤️你是我一生只会遇见一次的惊喜 # valine comment input placeholder (like: Please leave your footprints)
   guest_info: nick,mail,link # valine comment header info (nick/mail/link)
   recordIP: true # Record reviewer IP
-  serverURLs: https://kxhhfns1.api.lncldglobal.com # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
+  serverURLs: https://lean-api.mistill.com # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
   bg: # valine background
   emojiCDN: //i0.hdslb.com/bfs/emote/ # emoji CDN
   enableQQ: true # enable the Nickname box to automatically get QQ Nickname and QQ Avatar
