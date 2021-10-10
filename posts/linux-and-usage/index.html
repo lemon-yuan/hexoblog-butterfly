@@ -1,0 +1,380 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Linux中&amp;的用法 | 山野雾灯</title><meta name="keywords" content="Linux,bash"><meta name="author" content="Mistill"><meta name="copyright" content="Mistill"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="学习一下&amp;的用法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux中&amp;的用法">
+<meta property="og:url" content="https://mistill.com/posts/linux-and-usage/">
+<meta property="og:site_name" content="山野雾灯">
+<meta property="og:description" content="学习一下&amp;的用法">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://upyun-cdn.mistill.com/img/post_cover/post_cover_021.webp">
+<meta property="article:published_time" content="2020-06-26T07:27:08.000Z">
+<meta property="article:modified_time" content="2020-10-20T10:36:47.383Z">
+<meta property="article:author" content="Mistill">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="bash">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upyun-cdn.mistill.com/img/post_cover/post_cover_021.webp"><link rel="shortcut icon" href="https://upyun-cdn.mistill.com/img/favicon.ico"><link rel="canonical" href="https://mistill.com/posts/linux-and-usage/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44aad55a53b9dbf6595ee5b849ecc7cb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2020-10-20 18:36:47'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="referrer" content="no-referrer-when-downgrade" /><meta name="generator" content="Hexo 5.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://upyun-cdn.mistill.com/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-fw fas fa-book-reader"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa-fw fas fa-comment-alt"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="https://pan.mistill.com"><i class="fa-fw fas fa-hdd"></i><span> 网盘</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://upyun-cdn.mistill.com/img/post_cover/post_cover_021.webp)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">山野雾灯</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-fw fas fa-book-reader"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa-fw fas fa-comment-alt"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="https://pan.mistill.com"><i class="fa-fw fas fa-hdd"></i><span> 网盘</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux中&amp;的用法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-06-26T07:27:08.000Z" title="发表于 2020-06-26 15:27:08">2020-06-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-10-20T10:36:47.383Z" title="更新于 2020-10-20 18:36:47">2020-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9A%8F%E8%AE%B0%E5%88%86%E4%BA%AB/">随记分享</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Linux中，在命令的末尾加上一个<code>&amp;</code>号，是将这个任务放到后台去执行。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cp -R original/dir/backup/dir/ &amp;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>任务被放到后台执行之后，就可以立即继续在同一个终端上工作了，甚至关闭终端也不影响这个任务的正常执行。需要注意的是，如果要求这个任务输出内容到标准输出中（例如 <code>echo</code> 或 <code>ls</code>），即使使用了 <code>&amp;</code>，也会等待这些输出任务在前台运行完毕。</p>
+<a id="more"></a>
+
+<p>当使用 <code>&amp;</code> 将一个进程放置到后台运行的时候，Bash 会提示这个进程的进程 ID。在 Linux 系统中运行的每一个进程都有一个唯一的进程 ID，你可以使用进程 ID 来暂停、恢复或者终止对应的进程，因此进程 ID 是非常重要的。</p>
+<p>这个时候，只要你还停留在启动进程的终端当中，就可以使用以下几个命令来对管理后台进程：</p>
+<ul>
+<li><code>jobs</code> 命令可以显示当前终端正在运行的进程，包括前台运行和后台运行的进程。它对每个正在执行中的进程任务分配了一个序号（这个序号不是进程 ID），可以使用这些序号来引用各个进程任务。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">jobs</span></span><br><span class="line">[1]- Running cp -i -R original/dir/* backup/dir/ &amp;</span><br><span class="line">[2]+ Running find . -iname <span class="string">&quot;*jpg&quot;</span> &gt; backup/dir/images.txt &amp;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>fg</code> 命令可以将后台运行的进程任务放到前台运行，这样可以比较方便地进行交互。根据 <code>jobs</code> 命令提供的进程任务序号，再在前面加上 <code>%</code> 符号，就可以把相应的进程任务放到前台运行。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">fg</span> %1 <span class="comment"># 将上面序号为 1 的 cp 任务放到前台运行</span></span><br><span class="line">cp -i -R original/dir/* backup/dir/</span><br></pre></td></tr></table></figure>
+
+<p>如果这个进程任务是暂停状态，<code>fg</code> 命令会将它启动起来。</p>
+<ul>
+<li>使用 <code>ctrl+z</code> 组合键可以将前台运行的任务暂停，仅仅是暂停，而不是将任务终止。当使用 <code>fg</code> 或者 <code>bg</code> 命令将任务重新启动起来的时候，任务会从被暂停的位置开始执行。但 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://ss64.com/bash/sleep.html">sleep</a> 命令是一个特例，<code>sleep</code> 任务被暂停的时间会计算在 <code>sleep</code> 时间之内。因为 <code>sleep</code> 命令依据的是系统时钟的时间，而不是实际运行的时间。也就是说，如果运行了 <code>sleep 30</code>，然后将任务暂停 30 秒以上，那么任务恢复执行的时候会立即终止并退出。</li>
+<li><code>bg</code> 命令会将任务放置到后台执行，如果任务是暂停状态，也会被启动起来。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">bg</span> %1</span></span><br><span class="line">[1]+ cp -i -R original/dir/* backup/dir/ &amp;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>如上所述，以上几个命令只能在同一个终端里才能使用。如果启动进程任务的终端被关闭了，或者切换到了另一个终端，以上几个命令就无法使用了。</p>
+<p>如果要在另一个终端管理后台进程，就需要其它工具了。例如可以使用<code>kill</code>命令从另一个终端终止某个进程：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">kill</span> -s STOP &lt;pid&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里的 PID 就是使用 <code>&amp;</code> 将进程放到后台时 Bash 显示的那个进程 ID。如果你当时没有把进程 ID 记录下来，也可以使用 <code>ps</code> 命令（代表 process）来获取所有正在运行的进程的进程 ID，就像这样：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ps | grep cp</span></span><br></pre></td></tr></table></figure>
+
+<p>执行以后会显示出包含 <code>cp</code> 字符串的所有进程，例如上面例子中的 <code>cp</code> 进程。同时还会显示出对应的进程 ID：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ps | grep cp</span></span><br><span class="line">14444 pts/3 00:00:13 cp</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，进程 ID 是 14444，因此可以使用以下命令来暂停这个后台进程：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">kill</span> -s STOP 14444</span></span><br></pre></td></tr></table></figure>
+
+<p>注意，这里的 <code>STOP</code> 等同于前面提到的 <code>ctrl+z</code> 组合键的效果，也就是仅仅把进程暂停掉。</p>
+<p>如果想要把暂停了的进程启动起来，可以对进程发出 <code>CONT</code> 信号：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">kill</span> -s CONT 14444</span></span><br></pre></td></tr></table></figure>
+
+<p>这个给出一个<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.computerhope.com/unix/signals.htm">可以向进程发出的常用信号</a>列表。如果想要终止一个进程，可以发送 <code>TERM</code> 信号：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">kill</span> -s TERM 14444</span></span><br></pre></td></tr></table></figure>
+
+<p>如果进程不响应 <code>TERM</code> 信号并拒绝退出，还可以发送 <code>KILL</code> 信号强制终止进程：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">kill</span> -s KILL 14444</span></span><br></pre></td></tr></table></figure>
+
+<p>强制终止进程可能会有一定的风险，但如果遇到进程无节制消耗资源的情况，这样的信号还是能够派上用场的。</p>
+<p>另外，如果你不确定进程 ID 是否正确，可以在 <code>ps</code> 命令中加上 <code>x</code> 参数：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ps x| grep cp</span></span><br><span class="line">14444 pts/3 D 0:14 cp -i -R original/dir/Hols_2014.mp4</span><br><span class="line">  original/dir/Hols_2015.mp4 original/dir/Hols_2016.mp4</span><br><span class="line">  original/dir/Hols_2017.mp4 original/dir/Hols_2018.mp4 backup/dir/</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以看到是不是你需要的进程 ID 了。</p>
+<p>最后介绍一个将 <code>ps</code> 和 <code>grep</code> 结合到一起的命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pgrep cp</span></span><br><span class="line">8</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">26</span><br><span class="line">33</span><br><span class="line">40</span><br><span class="line">47</span><br><span class="line">54</span><br><span class="line">61</span><br><span class="line">72</span><br><span class="line">88</span><br><span class="line">96</span><br><span class="line">136</span><br><span class="line">339</span><br><span class="line">6680</span><br><span class="line">13735</span><br><span class="line">14444</span><br></pre></td></tr></table></figure>
+
+<p><code>pgrep</code> 可以直接将带有字符串 <code>cp</code> 的进程的进程 ID 显示出来。</p>
+<p>可以加上一些参数让它的输出更清晰：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pgrep -lx cp</span></span><br><span class="line">14444 cp</span><br></pre></td></tr></table></figure>
+
+<p>在这里，<code>-l</code> 参数会让 <code>pgrep</code> 将进程的名称显示出来，<code>-x</code> 参数则是让 <code>pgrep</code> 完全匹配 <code>cp</code> 这个命令。如果还想了解这个命令的更多细节，可以尝试运行 <code>pgrep -ax</code>。</p>
+<p>在命令的末尾加上 <code>&amp;</code> 可以让我们理解前台进程和后台进程的概念，以及如何管理这些进程。</p>
+<p>在 UNIX/Linux 术语中，在后台运行的进程被称为守护进程daemon。如果你曾经听说过这个词，那你现在应该知道它的意义了。</p>
+<p>和其它符号一样，<code>&amp;</code> 在命令行中还有很多别的用法。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined" rel="external nofollow noreferrer">Mistill</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://mistill.com/posts/linux-and-usage/">https://mistill.com/posts/linux-and-usage/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://mistill.com" target="_blank">山野雾灯</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/bash/">bash</a></div><div class="post_share"><div class="social-share" data-image="https://upyun-cdn.mistill.com/img/post_cover/post_cover_021.webp" data-sites="wechat,weibo,qq,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://upyun-cdn.mistill.com/img/donate/WeChanQR.jpg" rel="external nofollow noreferrer" target="_blank"><img class="post-qr-code-img" data-lazy-src="https://upyun-cdn.mistill.com/img/donate/WeChanQR.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="https://upyun-cdn.mistill.com/img/donate/AliPayQR.jpg" rel="external nofollow noreferrer" target="_blank"><img class="post-qr-code-img" data-lazy-src="https://upyun-cdn.mistill.com/img/donate/AliPayQR.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/hexo-inject-aplayer/"><img class="prev-cover" data-lazy-src="https://upyun-cdn.mistill.com/img/post_cover/post_cover_018.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">hexo添加Aplayer播放器</div></div></a></div><div class="next-post pull-right"><a href="/posts/router-unblock-neteasemusic/"><img class="next-cover" data-lazy-src="https://upyun-cdn.mistill.com/img/post_cover/post_cover_015.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">路由器解锁网易云灰色歌曲</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/linux-base-command/" title="都快0202年了，还不会Linux 基础命令？"><img class="cover" data-lazy-src="https://upyun-cdn.mistill.com/img/post_cover/post_cover_011.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-07</div><div class="title">都快0202年了，还不会Linux 基础命令？</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://upyun-cdn.mistill.com/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Mistill</div><div class="author-info__description">不要紧，山野都有雾灯</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/lemon-yuan"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lemon-yuan" rel="external nofollow noreferrer" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dxy5468301@hotmail.com" rel="external nofollow noreferrer" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/love/" target="_blank" title="纪念"><i class="fas fa-heart"></i></a><a class="social-icon" href="https://weibo.com/u/3748822360" rel="external nofollow noreferrer" target="_blank" title="Weibo"><i class="fab fa-weibo"></i></a><a class="social-icon" href="https://music.163.com/#/user/home?id=113981030" rel="external nofollow noreferrer" target="_blank" title="网易云音乐"><i class="fas fa-headphones-alt"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">念念不忘，可有回响</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/diary-210117/" title="2021.01.17周记"><img data-lazy-src="https://upyun-cdn.mistill.com/img/post_cover/post_cover_034.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2021.01.17周记"/></a><div class="content"><a class="title" href="/posts/diary-210117/" title="2021.01.17周记">2021.01.17周记</a><time datetime="2021-01-17T12:45:08.000Z" title="发表于 2021-01-17 20:45:08">2021-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/diary-210102/" title="2021.01.02周记"><img data-lazy-src="https://upyun-cdn.mistill.com/img/post_cover/post_cover_033.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2021.01.02周记"/></a><div class="content"><a class="title" href="/posts/diary-210102/" title="2021.01.02周记">2021.01.02周记</a><time datetime="2021-01-02T12:45:08.000Z" title="发表于 2021-01-02 20:45:08">2021-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/diary-201220/" title="2020.12.20周记"><img data-lazy-src="https://upyun-cdn.mistill.com/img/post_cover/post_cover_032.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2020.12.20周记"/></a><div class="content"><a class="title" href="/posts/diary-201220/" title="2020.12.20周记">2020.12.20周记</a><time datetime="2020-12-20T06:15:08.000Z" title="发表于 2020-12-20 14:15:08">2020-12-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/record-201215/" title="记录一次练习当中遇到的HashSet的相关问题"><img data-lazy-src="https://upyun-cdn.mistill.com/img/post_cover/post_cover_031.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="记录一次练习当中遇到的HashSet的相关问题"/></a><div class="content"><a class="title" href="/posts/record-201215/" title="记录一次练习当中遇到的HashSet的相关问题">记录一次练习当中遇到的HashSet的相关问题</a><time datetime="2020-12-15T05:15:08.000Z" title="发表于 2020-12-15 13:15:08">2020-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/diary-201206/" title="2020.12.6周记"><img data-lazy-src="https://upyun-cdn.mistill.com/img/post_cover/post_cover_030.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2020.12.6周记"/></a><div class="content"><a class="title" href="/posts/diary-201206/" title="2020.12.6周记">2020.12.6周记</a><time datetime="2020-12-06T06:15:08.000Z" title="发表于 2020-12-06 14:15:08">2020-12-06</time></div></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://upyun-cdn.mistill.com/img/post_cover/post_cover_021.webp)"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2021 By Mistill</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">本网站由 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra"><img src="https://upyun-cdn.mistill.com/img/upyun_logo.png" align="absmiddle" width="59px" height="30px" style="margin-top:-4px;" /></a> 提供 CDN 加速服务<br><a href=http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=61102502000020>陕公网安备61102502000020号</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="http://beian.miit.gov.cn">陕ICP备20011442号</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.spacingElementById('content-inner')
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.spacingElementById('content-inner')
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'B4eeRv6qGIAGE4E4hjVldenw-gzGzoHsz',
+      appKey: '2rzuS94nFvPK8CQynlN8hdMj',
+      placeholder: '📌昵称框输入 QQ 自动获取昵称和头像\n👨‍🔧本站使用 Akismet 反垃圾评论\n🚀评论和回复支持 MarkDown 语法\n❤️你是我一生只会遇见一次的惊喜',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: 'https://lean-api.mistill.com',
+      emojiCDN: '//i0.hdslb.com/bfs/emote/',
+      emojiMaps: {"tv_白眼":"c1d59f439e379ee50eef488bcb5e5378e5044ea4.png","tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_难过":"87f46748d3f142ebc6586ff58860d0e2fc8263ba.png","tv_生气":"26702dcafdab5e8225b43ffd23c94ac1ff932654.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_斜眼笑":"911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_疑问":"0793d949b18d7be716078349c202c15ff166f314.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_鼓掌":"1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png","tv_抠鼻":"c666f55e88d471e51bbd9fab9bb308110824a6eb.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_调皮":"b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png","tv_笑哭":"1abc628f6d4f4caf9d0e7800878f4697abbc8273.png","tv_晕":"5443c22b4d07fb1907ccc610c8e6db254f2461b7.png","tv_点赞":"f85c354995bd99e28fc76c869bfe42ba6438eff4.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_睡着":"8b196675b53af58264f383c50ad0945048290b33.png","tv_色":"61822c7e9aae5da76475e7892534545336b23a6f.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_无奈":"ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_流汗":"cead1c351ab8d79e9f369605beb90148db0fbed3.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_抓狂":"fe31c08edad661d63762b04e17b8d5ae3c71a757.png","tv_黑人问号":"45821a01f51bc867da9edbaa2e070410819a95b2.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_打脸":"56ab10b624063e966bfcb76ea5dc4794d87dfd47.png","tv_闭嘴":"c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png","tv_鄙视":"6e72339f346a692a495b123174b49e4e8e781303.png","tv_腼腆":"89712c0d4af73e67f89e35cbc518420380a7f6f4.png","tv_馋":"fc7e829b845c43c623c8b490ee3602b7f0e76a31.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_生病":"8b0ec90e6b86771092a498c54f09fc94621c1900.png","tv_流鼻血":"c32d39db2737f89b904ca32700d140a9241b0767.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_流泪":"7e71cde7858f0cd50d74b0264aa26db612a8a167.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_皱眉":"72ccad6679fea0d14cce648b4d818e09b8ffea2d.png","tv_鬼脸":"0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png","tv_调侃":"4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png","tv_目瞪口呆":"0b8cb81a68de5d5365212c99375e7ace3e7891b7.png"},
+      enableQQ: true,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div class="aplayer no-destroy" data-id="5089993118" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="true"  data-preload="none" data-autoplay="false" data-lrctype="0" muted></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})</script></div></body></html>

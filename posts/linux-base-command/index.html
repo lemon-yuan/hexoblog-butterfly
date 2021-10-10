@@ -1,0 +1,477 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>都快0202年了，还不会Linux 基础命令？ | 山野雾灯</title><meta name="keywords" content="bash,linux"><meta name="author" content="Mistill"><meta name="copyright" content="Mistill"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="Linux基础命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="都快0202年了，还不会Linux 基础命令？">
+<meta property="og:url" content="https://mistill.com/posts/linux-base-command/">
+<meta property="og:site_name" content="山野雾灯">
+<meta property="og:description" content="Linux基础命令">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://upyun-cdn.mistill.com/img/post_cover/post_cover_011.webp">
+<meta property="article:published_time" content="2020-07-07T13:27:08.000Z">
+<meta property="article:modified_time" content="2020-10-20T10:36:47.383Z">
+<meta property="article:author" content="Mistill">
+<meta property="article:tag" content="bash">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upyun-cdn.mistill.com/img/post_cover/post_cover_011.webp"><link rel="shortcut icon" href="https://upyun-cdn.mistill.com/img/favicon.ico"><link rel="canonical" href="https://mistill.com/posts/linux-base-command/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?44aad55a53b9dbf6595ee5b849ecc7cb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-10-20 18:36:47'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="referrer" content="no-referrer-when-downgrade" /><meta name="generator" content="Hexo 5.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://upyun-cdn.mistill.com/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-fw fas fa-book-reader"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa-fw fas fa-comment-alt"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="https://pan.mistill.com"><i class="fa-fw fas fa-hdd"></i><span> 网盘</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://upyun-cdn.mistill.com/img/post_cover/post_cover_011.webp)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">山野雾灯</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-fw fas fa-book-reader"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa-fw fas fa-comment-alt"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="https://pan.mistill.com"><i class="fa-fw fas fa-hdd"></i><span> 网盘</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">都快0202年了，还不会Linux 基础命令？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-07T13:27:08.000Z" title="发表于 2020-07-07 21:27:08">2020-07-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-10-20T10:36:47.383Z" title="更新于 2020-10-20 18:36:47">2020-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9A%8F%E8%AE%B0%E5%88%86%E4%BA%AB/">随记分享</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>程序员：“我要跑路了，告诉我命令行是“<code>rm -rf /*</code>”的那个人你小心点。”</p>
+<p><strong>“<code>rm -rf</code>” 引发的血案都在菜鸟程序员中经常出现，初初入行的前后端们基础不扎实。</strong><br><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221550.jpeg"></p>
+<p>容易出现没有图形用户界面 (<code>GUI</code>)就无从下手，连部署应用都不会的尴尬局面。</p>
+<p><strong>窃以为，熟悉掌握<code>Linux</code>下的<code>Vim</code>和常用的命令是每个程序员的必修课。</strong></p>
+<p>而且，连微软都拥抱<code>Linux terminal</code>，推出了<code>Windows Terminal</code>。你还有 什么理由不学？</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221602.jpeg"></p>
+<h2 id="1-grep：查找文件中的关键字"><a href="#1-grep：查找文件中的关键字" class="headerlink" title="1. grep：查找文件中的关键字"></a>1. <code>grep</code>：查找文件中的关键字</h2><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span> grep <span class="string">&quot;string&quot;</span> [选项] <span class="keyword">file</span></span><br></pre></td></tr></table></figure>
+<p>使用<code>grep</code>命令查找文件中的所有<code>React</code>关键字:</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221609.jpeg"></p>
+<ul>
+<li><code>-i</code>选项可以在文件中不区分大小写地搜索字符串。它匹配”<code>REACT</code>“，”<code>REact</code>“和”<code>react</code>“等词。  <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span> grep -i <span class="string">&quot;REact&quot;</span> <span class="keyword">file</span></span><br></pre></td></tr></table></figure></li>
+<li><code>-c (count)</code>选项，可以找到给定字符串/模式匹配的行数  <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">grep</span> -<span class="keyword">c</span> <span class="string">&quot;react&quot;</span> <span class="built_in">index</span>.js</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221621.jpeg"></p>
+<p>更多的选项可以查看下图：</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221627.jpeg"></p>
+<h2 id="2-ls：列出当前路径中的文件和目录。"><a href="#2-ls：列出当前路径中的文件和目录。" class="headerlink" title="2. ls：列出当前路径中的文件和目录。"></a>2. <code>ls</code>：列出当前路径中的文件和目录。</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> <span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
+<p><code>ls</code>列出当前路径中的文件和目录。</p>
+<ul>
+<li>如果为文件，则显示成蓝色。</li>
+<li>如果为文件夹，则显示成灰色</li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221636.jpeg"></p>
+<h2 id="3-pwd-显示工作目录"><a href="#3-pwd-显示工作目录" class="headerlink" title="3. pwd: 显示工作目录"></a>3. <code>pwd</code>: 显示工作目录</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> <span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221645.jpeg"></p>
+<h2 id="4-cat：观看文件的内容"><a href="#4-cat：观看文件的内容" class="headerlink" title="4. cat：观看文件的内容"></a>4. <code>cat</code>：观看文件的内容</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> <span class="built_in">cat</span> somefile.js</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221653.jpeg"><br>cat主要有三大功能：</p>
+<ol>
+<li>一次显示整个文件。<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> <span class="built_in">cat</span> filename</span><br></pre></td></tr></table></figure></li>
+<li>从键盘创建一个文件。<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> <span class="built_in">cat</span> &gt; filename</span><br></pre></td></tr></table></figure>
+<strong>只能创建新文件,不能编辑已有文件。</strong></li>
+<li>将几个文件合并为一个文件。<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">$cat</span> file1 file2 &gt; file</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>以下例子，将<code>index.js</code>拷贝一份为<code>index2.js</code><br><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221659.jpeg"></p>
+<h2 id="5-echo：字符串的输出"><a href="#5-echo：字符串的输出" class="headerlink" title="5. echo：字符串的输出"></a>5. <code>echo</code>：字符串的输出</h2>   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">&quot;some text&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>这是一个内置命令，主要用于Shell脚本和批处理文件中，以将状态文本输出到屏幕或文件。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221706.jpeg"></p>
+<h2 id="6-touch：创建文件"><a href="#6-touch：创建文件" class="headerlink" title="6.  touch：创建文件"></a>6. <code> touch</code>：创建文件</h2><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>touch somefile</span><br></pre></td></tr></table></figure>
+<p><code>touch</code>命令用于创建没有任何内容的文件。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221716.jpeg"><br>请注意，在上图中，我们用<code>touch</code>创建文件和<code>cat</code>查看文件内部的。由于新创建的<code>index2.js</code>文件为空，因此<code>cat</code>不返回任何内容。</p>
+<p>以下是<code>cat</code>和<code>touch</code>之间的主要区别：</p>
+<ul>
+<li><code>cat</code>，用于创建包含内容的文件。</li>
+<li><code>touch</code>，创建一个没有任何内容的空文件。</li>
+</ul>
+<h2 id="7-mkdir：创建一个新的空目录"><a href="#7-mkdir：创建一个新的空目录" class="headerlink" title="7. mkdir：创建一个新的空目录"></a>7. <code>mkdir</code>：创建一个新的空目录</h2><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">mkdir</span> <span class="built_in">some</span>-<span class="built_in">directory</span></span><br></pre></td></tr></table></figure>
+<p><code>mkdir</code>在当前路径中创建一个新的空目录</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221726.jpeg"></p>
+<h2 id="8-rm：删除文件-目录"><a href="#8-rm：删除文件-目录" class="headerlink" title="8.rm：删除文件/目录"></a>8.<code>rm</code>：删除文件/目录</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> <span class="built_in">rm</span> [选项] someFile</span><br></pre></td></tr></table></figure>
+<p><code>rm</code>命令用于删除一个文件或者目录。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221735.jpeg"></p>
+<p>选项：</p>
+<ul>
+<li><code>-i</code> 删除前逐一询问确认。</li>
+<li><code>-f</code> 即使原档案属性设为唯读，亦直接删除，无需逐一确认。</li>
+<li><code>-r</code> 将目录及以下之档案亦逐一删除。</li>
+</ul>
+<h3 id="8-1-rmdir：删除空目录"><a href="#8-1-rmdir：删除空目录" class="headerlink" title="8.1 rmdir：删除空目录"></a>8.1 <code>rmdir</code>：删除空目录</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">rmdir</span> <span class="built_in">some</span>-<span class="built_in">directory</span></span><br></pre></td></tr></table></figure>
+
+<p>如果目录中没有内容，该命令将删除目录。否则返回提示<code>xxx not empty</code>：</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221744.jpeg"></p>
+<h2 id="9-tail：查看文档的内容"><a href="#9-tail：查看文档的内容" class="headerlink" title="9. tail：查看文档的内容"></a>9. <code>tail</code>：查看文档的内容</h2><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>tail [选项] somefile</span><br></pre></td></tr></table></figure>
+<p><strong>默认显示文档的最后 10 行</strong></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221754.jpeg"></p>
+<p>几个常用的参数:</p>
+<ul>
+<li><code>-f</code>，循环读取。<figure class="highlight stan"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">tail</span> -f notes.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+此命令显示 <code>notes.log</code> 文件的最后 10 行。当将某些行添加至 <code>notes.log</code> 文件时，<code>tail</code> 命令会继续显示这些行。 显示一直继续，直到您按下（<code>Ctrl-C</code>）组合键停止显示。</li>
+<li><code>+</code>，从xx行到结尾<figure class="highlight stan"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">tail</span> +<span class="number">20</span> notes.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+显示文件 <code>notes.log</code> 的内容，从第 20 行至文件末尾。</li>
+<li><code>-c </code>，最后xx行。<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">tail</span> -<span class="keyword">c</span> <span class="number">10</span> notes.log</span><br></pre></td></tr></table></figure>
+ 显示文件 <code>notes.log</code>的最后 10 个字符:</li>
+</ul>
+<p><code>tail</code>命令在查看崩溃报告或以前的历史记录日志时很有用:<br>   <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tail /var/log/messages</span></span><br><span class="line"><span class="attribute">Mar</span> <span class="number">20</span> <span class="number">12</span>:<span class="number">42</span>:<span class="number">22</span> hameda<span class="number">1</span>d<span class="number">1</span>c dhclient[<span class="number">4334</span>]: DHCPREQUEST <span class="literal">on</span> eth<span class="number">0</span> to <span class="number">255.255.255.255</span> port <span class="number">67</span> (xid=<span class="number">0</span>x<span class="number">280436</span>dd)</span><br><span class="line"><span class="attribute">Mar</span> <span class="number">20</span> <span class="number">12</span>:<span class="number">42</span>:<span class="number">24</span> hameda<span class="number">1</span>d<span class="number">1</span>c avahi-daemon[<span class="number">2027</span>]: Registering new address record for fe<span class="number">80</span>::<span class="number">4639</span>:c<span class="number">4</span>ff:fe<span class="number">53</span>:<span class="number">4908</span> <span class="literal">on</span> eth<span class="number">0</span>.*.</span><br><span class="line"><span class="attribute">Mar</span> <span class="number">20</span> <span class="number">12</span>:<span class="number">42</span>:<span class="number">28</span> hameda<span class="number">1</span>d<span class="number">1</span>c dhclient[<span class="number">4334</span>]: DHCPREQUEST <span class="literal">on</span> eth<span class="number">0</span> to <span class="number">255.255.255.255</span> port <span class="number">67</span> (xid=<span class="number">0</span>x<span class="number">280436</span>dd)</span><br><span class="line"><span class="attribute">Mar</span> <span class="number">20</span> <span class="number">12</span>:<span class="number">42</span>:<span class="number">28</span> hameda<span class="number">1</span>d<span class="number">1</span>c dhclient[<span class="number">4334</span>]: DHCPACK from <span class="number">10.76.198.1</span> (xid=<span class="number">0</span>x<span class="number">280436</span>dd)</span><br><span class="line"><span class="attribute">Mar</span> <span class="number">20</span> <span class="number">12</span>:<span class="number">42</span>:<span class="number">30</span> hameda<span class="number">1</span>d<span class="number">1</span>c avahi-daemon[<span class="number">2027</span>]: Joining mDNS multicast group <span class="literal">on</span> interface eth<span class="number">0</span>.IPv<span class="number">4</span> with address <span class="number">10.76.199.87</span>.</span><br><span class="line"><span class="attribute">Mar</span> <span class="number">20</span> <span class="number">12</span>:<span class="number">42</span>:<span class="number">30</span> hameda<span class="number">1</span>d<span class="number">1</span>c avahi-daemon[<span class="number">2027</span>]: New relevant interface eth<span class="number">0</span>.IPv<span class="number">4</span> for mDNS.</span><br><span class="line"><span class="attribute">Mar</span> <span class="number">20</span> <span class="number">12</span>:<span class="number">42</span>:<span class="number">30</span> hameda<span class="number">1</span>d<span class="number">1</span>c avahi-daemon[<span class="number">2027</span>]: Registering new address record for <span class="number">10.76.199.87</span> <span class="literal">on</span> eth<span class="number">0</span>.IPv<span class="number">4</span>.</span><br><span class="line"><span class="attribute">Mar</span> <span class="number">20</span> <span class="number">12</span>:<span class="number">42</span>:<span class="number">30</span> hameda<span class="number">1</span>d<span class="number">1</span>c NET[<span class="number">4385</span>]: /sbin/dhclient-script : updated /etc/resolv.conf</span><br><span class="line"><span class="attribute">Mar</span> <span class="number">20</span> <span class="number">12</span>:<span class="number">42</span>:<span class="number">30</span> hameda<span class="number">1</span>d<span class="number">1</span>c dhclient[<span class="number">4334</span>]: bound to <span class="number">10.76.199.87</span> -- renewal in <span class="number">74685</span> seconds.</span><br><span class="line"><span class="attribute">Mar</span> <span class="number">20</span> <span class="number">12</span>:<span class="number">45</span>:<span class="number">39</span> hameda<span class="number">1</span>d<span class="number">1</span>c kernel: usb <span class="number">3</span>-<span class="number">7</span>: USB disconnect, device number <span class="number">2</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="10-find-搜索文件"><a href="#10-find-搜索文件" class="headerlink" title="10. find:搜索文件"></a>10. <code>find</code>:搜索文件</h2><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">find</span> <span class="built_in">path</span> -name filename</span><br></pre></td></tr></table></figure>
+<p><code>find</code>命令可以快速查找文件或目录。当你正在处理具有数百个文件和多个目录的大型项目时，此功能很有用。</p>
+<p>查找所有名为<code>index.js</code>的文件:<br><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221809.jpeg"></p>
+<p>查找指定类型的文件：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="builtin-name">find</span> . -name <span class="string">&quot;*.js&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221837.jpeg"></p>
+<h2 id="11-mv：移动文件"><a href="#11-mv：移动文件" class="headerlink" title="11. mv：移动文件"></a>11. <code>mv</code>：移动文件</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mv somefile <span class="regexp">/to/</span>some<span class="regexp">/other/</span>path</span><br></pre></td></tr></table></figure>
+<p>该mv命令将文件或目录从一个位置移动到另一个位置。</p>
+<p><strong>支持移动单个文件，多个文件和目录。</strong></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221845.jpeg"></p>
+<h2 id="12-wget：下载文件的工具"><a href="#12-wget：下载文件的工具" class="headerlink" title="12. wget：下载文件的工具"></a>12. <code>wget</code>：下载文件的工具</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> <span class="built_in">wget</span> someurl</span><br></pre></td></tr></table></figure>
+
+<p><code>Wget</code>是一个免费软件包，用于使用<code>HTTP，HTTPS，FTP和FTPS</code>（最广泛使用的<code>Internet</code>协议）检索文件。</p>
+<p>这是一个非交互式的命令行工具，因此可以很容易地从脚本，CRON作业，不支持<code>X-Windows</code>的终端等中调用它。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221852.jpeg"></p>
+<p><code>Wget</code>具有许多使检索大型文件或镜像整个Web或FTP站点变得容易的功能，包括：</p>
+<ul>
+<li>可以使用<code>REST</code>和<code>RANGE</code>恢复中止的下载。</li>
+<li>可以使用文件名通配符并递归镜像目录</li>
+<li>基于NLS的消息文件，适用于多种语言</li>
+<li>可将下载的文档中的绝对链接转换为相对链接，以便下载的文档可以在本地链接。</li>
+<li>在大多数类似<code>UNIX</code>的操作系统以及<code>Microsoft Windows</code>上运行</li>
+<li>支持<code>HTTP</code>代理,<code>cookie</code> 和持久的<code>HTTP</code>连接.</li>
+<li>无人值守/后台操作。</li>
+</ul>
+<h2 id="13-tree：以树状图列出目录的内容"><a href="#13-tree：以树状图列出目录的内容" class="headerlink" title="13. tree：以树状图列出目录的内容"></a>13. <code>tree</code>：以树状图列出目录的内容</h2><p>常在写文档时需要列一下文件目录结构，这个时候<code>tree</code>命令就能帮个忙了。某些<code>Linux</code>、<code>macOS</code>上没有<code>tree</code>命令，需要执行安装：</p>
+<ol>
+<li>先确保安装了<code>Homebrew</code>，若没有则执行：<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>bin<span class="regexp">/ruby -e &quot;$(curl -fsSL https:/</span><span class="regexp">/raw.githubusercontent.com/</span>Homebrew<span class="regexp">/install/m</span>aster/install)<span class="string">&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li>安装<code>tree</code>命令<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>tree</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>效果：<br>  <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(base) xxx$ tree</span><br><span class="line">.</span><br><span class="line">├── djangoStudy</span><br><span class="line">│   ├── __init__.<span class="keyword">py</span></span><br><span class="line">│   ├── settings.<span class="keyword">py</span></span><br><span class="line">│   ├── urls.<span class="keyword">py</span></span><br><span class="line">│   └── wsgi.<span class="keyword">py</span></span><br><span class="line">└── manage.<span class="keyword">py</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> directory, <span class="number">5</span> <span class="keyword">files</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="14-：管道命令"><a href="#14-：管道命令" class="headerlink" title="14. |：管道命令"></a>14. <code>|</code>：管道命令</h2><p>通常情况下，我们在终端只能执行一条命令，然后按下回车执行，那么如何执行多条命令呢？</p>
+<ul>
+<li>顺序执行多条命令：<code>command1;command2;command3;</code><br>简单的顺序指令可以通过 <code>;</code>来实现。</li>
+<li>有条件的执行多条命令：<code>which command1 &amp;&amp; command2 || command3</code><ul>
+<li><code>&amp;&amp;</code> : 如果前一条命令执行成功则执行下一条命令，和<code>JavaScript</code>中用法一致</li>
+<li>|| :与<code>&amp;&amp;</code>命令相反，执行不成功时执行下一个。</li>
+</ul>
+</li>
+<li><code>$?</code>: 存储上一次命令的返回结果<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> 栗子：</span><br><span class="line">$ which git&gt;<span class="regexp">/dev/</span>null &amp;&amp; git --help  <span class="regexp">//</span> 如果存在git命令，执行git --help命令</span><br><span class="line">$ echo $? </span><br></pre></td></tr></table></figure>
+而管道命令则可以衔接各种命令的输出输入，使得连锁操作变得简单。<blockquote>
+<p>管道是一种通信机制，通常用于进程间的通信（也可通过socket进行网络通信），它表现出来的形式将前面每一个进程的输出（stdout）直接作为下一个进程的输入（stdin）</p>
+</blockquote>
+</li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221907.jpeg"></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ 指令<span class="number">1</span> | 指令<span class="number">2</span> | …</span><br></pre></td></tr></table></figure>
+<p>管道命令的注意事项：</p>
+<ul>
+<li>只能处理前一条指令的正确输出，不能处理错误输出；</li>
+<li>后一条指令，必须能够接收标准输入流命令才能执行。</li>
+</ul>
+<p>例子：<br>1、分页显示 <code>/etc</code> 目录 中内容的详细信息</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">ls</span> -l <span class="string">/etc</span> | more</span><br></pre></td></tr></table></figure>
+
+<p>2、将一个字符串输入到一个文件中</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> <span class="built_in">echo</span> <span class="string">&quot;Hello World&quot;</span> | <span class="built_in">cat</span> &gt; hello.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="后记-amp-引用"><a href="#后记-amp-引用" class="headerlink" title="后记 &amp; 引用"></a>后记 &amp; 引用</h2><blockquote>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://medium.com/better-programming/here-are-11-console-commands-every-developer-should-know-54e348ef22fa">Here Are 11 Console Commands Every Developer Should Know</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.jianshu.com/p/9c0c2b57cb73">Linux管道命令（pipe）</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.jianshu.com/p/f540e8b6e53f">MacOS上使用tree命令</a><br>附赠一张强大无比的<code>Linux</code>命令表</li>
+</ul>
+</blockquote>
+<p><img src= "/img/loading.gif" data-lazy-src="https://upyun-cdn.mistill.com/img/post_img/20200707221930.jpeg"></p>
+<h2 id="❤️-看完三件事"><a href="#❤️-看完三件事" class="headerlink" title="❤️ 看完三件事"></a>❤️ 看完三件事</h2><p>如果你觉得这篇内容对你挺有启发，我想邀请你帮我三个小忙：</p>
+<ol>
+<li>点赞，让更多的人也能看到这篇内容（收藏不点赞，都是耍流氓 -_-）</li>
+<li>关注公众号「前端劝退师」，不定期分享原创知识。</li>
+<li>也看看其它文章</li>
+</ol>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.im/post/5d9eea84e51d4577eb5d8510">Chrome Devtools 高级调试指南（新）</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.im/post/5da1a04ae51d45783d6122bf">JavaScript 工具函数大全（新）</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.im/post/5d674313e51d4561c94b1000">「React Hooks」120行代码实现一个交互完整的拖拽上传组件</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.im/post/5d565015f265da03eb13c575">「React Hooks」160行代码实现动态炫酷的可视化图表 - 排行榜</a></li>
+</ul>
+<p>也可以来我的<code>GitHub</code>博客里拿所有文章的源文件：</p>
+<p><strong>前端劝退指南</strong>：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/roger-hiro/BlogFN">https://github.com/roger-hiro/BlogFN</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined" rel="external nofollow noreferrer">Mistill</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://mistill.com/posts/linux-base-command/">https://mistill.com/posts/linux-base-command/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://mistill.com" target="_blank">山野雾灯</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/bash/">bash</a><a class="post-meta__tags" href="/tags/linux/">linux</a></div><div class="post_share"><div class="social-share" data-image="https://upyun-cdn.mistill.com/img/post_cover/post_cover_011.webp" data-sites="wechat,weibo,qq,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://upyun-cdn.mistill.com/img/donate/WeChanQR.jpg" rel="external nofollow noreferrer" target="_blank"><img class="post-qr-code-img" data-lazy-src="https://upyun-cdn.mistill.com/img/donate/WeChanQR.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="https://upyun-cdn.mistill.com/img/donate/AliPayQR.jpg" rel="external nofollow noreferrer" target="_blank"><img class="post-qr-code-img" data-lazy-src="https://upyun-cdn.mistill.com/img/donate/AliPayQR.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/diary-200710/"><img class="prev-cover" data-lazy-src="https://upyun-cdn.mistill.com/img/post_cover/post_cover_003.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">2020.7.10</div></div></a></div><div class="next-post pull-right"><a href="/posts/diary-200706/"><img class="next-cover" data-lazy-src="https://upyun-cdn.mistill.com/img/post_cover/post_cover_002.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">2020-7-6</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/linux-and-usage/" title="Linux中&的用法"><img class="cover" data-lazy-src="https://upyun-cdn.mistill.com/img/post_cover/post_cover_021.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-26</div><div class="title">Linux中&的用法</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://upyun-cdn.mistill.com/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Mistill</div><div class="author-info__description">不要紧，山野都有雾灯</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/lemon-yuan"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lemon-yuan" rel="external nofollow noreferrer" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dxy5468301@hotmail.com" rel="external nofollow noreferrer" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/love/" target="_blank" title="纪念"><i class="fas fa-heart"></i></a><a class="social-icon" href="https://weibo.com/u/3748822360" rel="external nofollow noreferrer" target="_blank" title="Weibo"><i class="fab fa-weibo"></i></a><a class="social-icon" href="https://music.163.com/#/user/home?id=113981030" rel="external nofollow noreferrer" target="_blank" title="网易云音乐"><i class="fas fa-headphones-alt"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">念念不忘，可有回响</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-grep%EF%BC%9A%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">2.</span> <span class="toc-text">1. grep：查找文件中的关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-ls%EF%BC%9A%E5%88%97%E5%87%BA%E5%BD%93%E5%89%8D%E8%B7%AF%E5%BE%84%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95%E3%80%82"><span class="toc-number">3.</span> <span class="toc-text">2. ls：列出当前路径中的文件和目录。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-pwd-%E6%98%BE%E7%A4%BA%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95"><span class="toc-number">4.</span> <span class="toc-text">3. pwd: 显示工作目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-cat%EF%BC%9A%E8%A7%82%E7%9C%8B%E6%96%87%E4%BB%B6%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">5.</span> <span class="toc-text">4. cat：观看文件的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-echo%EF%BC%9A%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%BE%93%E5%87%BA"><span class="toc-number">6.</span> <span class="toc-text">5. echo：字符串的输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-touch%EF%BC%9A%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6"><span class="toc-number">7.</span> <span class="toc-text">6.  touch：创建文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-mkdir%EF%BC%9A%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E7%A9%BA%E7%9B%AE%E5%BD%95"><span class="toc-number">8.</span> <span class="toc-text">7. mkdir：创建一个新的空目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-rm%EF%BC%9A%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6-%E7%9B%AE%E5%BD%95"><span class="toc-number">9.</span> <span class="toc-text">8.rm：删除文件&#x2F;目录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-rmdir%EF%BC%9A%E5%88%A0%E9%99%A4%E7%A9%BA%E7%9B%AE%E5%BD%95"><span class="toc-number">9.1.</span> <span class="toc-text">8.1 rmdir：删除空目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-tail%EF%BC%9A%E6%9F%A5%E7%9C%8B%E6%96%87%E6%A1%A3%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">10.</span> <span class="toc-text">9. tail：查看文档的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-find-%E6%90%9C%E7%B4%A2%E6%96%87%E4%BB%B6"><span class="toc-number">11.</span> <span class="toc-text">10. find:搜索文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-mv%EF%BC%9A%E7%A7%BB%E5%8A%A8%E6%96%87%E4%BB%B6"><span class="toc-number">12.</span> <span class="toc-text">11. mv：移动文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-wget%EF%BC%9A%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-number">13.</span> <span class="toc-text">12. wget：下载文件的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-tree%EF%BC%9A%E4%BB%A5%E6%A0%91%E7%8A%B6%E5%9B%BE%E5%88%97%E5%87%BA%E7%9B%AE%E5%BD%95%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">14.</span> <span class="toc-text">13. tree：以树状图列出目录的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%EF%BC%9A%E7%AE%A1%E9%81%93%E5%91%BD%E4%BB%A4"><span class="toc-number">15.</span> <span class="toc-text">14. |：管道命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0-amp-%E5%BC%95%E7%94%A8"><span class="toc-number">16.</span> <span class="toc-text">后记 &amp; 引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9D%A4%EF%B8%8F-%E7%9C%8B%E5%AE%8C%E4%B8%89%E4%BB%B6%E4%BA%8B"><span class="toc-number">17.</span> <span class="toc-text">❤️ 看完三件事</span></a></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/diary-210117/" title="2021.01.17周记"><img data-lazy-src="https://upyun-cdn.mistill.com/img/post_cover/post_cover_034.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2021.01.17周记"/></a><div class="content"><a class="title" href="/posts/diary-210117/" title="2021.01.17周记">2021.01.17周记</a><time datetime="2021-01-17T12:45:08.000Z" title="发表于 2021-01-17 20:45:08">2021-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/diary-210102/" title="2021.01.02周记"><img data-lazy-src="https://upyun-cdn.mistill.com/img/post_cover/post_cover_033.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2021.01.02周记"/></a><div class="content"><a class="title" href="/posts/diary-210102/" title="2021.01.02周记">2021.01.02周记</a><time datetime="2021-01-02T12:45:08.000Z" title="发表于 2021-01-02 20:45:08">2021-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/diary-201220/" title="2020.12.20周记"><img data-lazy-src="https://upyun-cdn.mistill.com/img/post_cover/post_cover_032.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2020.12.20周记"/></a><div class="content"><a class="title" href="/posts/diary-201220/" title="2020.12.20周记">2020.12.20周记</a><time datetime="2020-12-20T06:15:08.000Z" title="发表于 2020-12-20 14:15:08">2020-12-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/record-201215/" title="记录一次练习当中遇到的HashSet的相关问题"><img data-lazy-src="https://upyun-cdn.mistill.com/img/post_cover/post_cover_031.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="记录一次练习当中遇到的HashSet的相关问题"/></a><div class="content"><a class="title" href="/posts/record-201215/" title="记录一次练习当中遇到的HashSet的相关问题">记录一次练习当中遇到的HashSet的相关问题</a><time datetime="2020-12-15T05:15:08.000Z" title="发表于 2020-12-15 13:15:08">2020-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/diary-201206/" title="2020.12.6周记"><img data-lazy-src="https://upyun-cdn.mistill.com/img/post_cover/post_cover_030.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2020.12.6周记"/></a><div class="content"><a class="title" href="/posts/diary-201206/" title="2020.12.6周记">2020.12.6周记</a><time datetime="2020-12-06T06:15:08.000Z" title="发表于 2020-12-06 14:15:08">2020-12-06</time></div></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://upyun-cdn.mistill.com/img/post_cover/post_cover_011.webp)"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2021 By Mistill</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">本网站由 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra"><img src="https://upyun-cdn.mistill.com/img/upyun_logo.png" align="absmiddle" width="59px" height="30px" style="margin-top:-4px;" /></a> 提供 CDN 加速服务<br><a href=http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=61102502000020>陕公网安备61102502000020号</a>  <a target="_blank" rel="noopener external nofollow noreferrer" href="http://beian.miit.gov.cn">陕ICP备20011442号</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.spacingElementById('content-inner')
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.spacingElementById('content-inner')
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'B4eeRv6qGIAGE4E4hjVldenw-gzGzoHsz',
+      appKey: '2rzuS94nFvPK8CQynlN8hdMj',
+      placeholder: '📌昵称框输入 QQ 自动获取昵称和头像\n👨‍🔧本站使用 Akismet 反垃圾评论\n🚀评论和回复支持 MarkDown 语法\n❤️你是我一生只会遇见一次的惊喜',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: 'https://lean-api.mistill.com',
+      emojiCDN: '//i0.hdslb.com/bfs/emote/',
+      emojiMaps: {"tv_白眼":"c1d59f439e379ee50eef488bcb5e5378e5044ea4.png","tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_难过":"87f46748d3f142ebc6586ff58860d0e2fc8263ba.png","tv_生气":"26702dcafdab5e8225b43ffd23c94ac1ff932654.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_斜眼笑":"911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_疑问":"0793d949b18d7be716078349c202c15ff166f314.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_鼓掌":"1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png","tv_抠鼻":"c666f55e88d471e51bbd9fab9bb308110824a6eb.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_调皮":"b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png","tv_笑哭":"1abc628f6d4f4caf9d0e7800878f4697abbc8273.png","tv_晕":"5443c22b4d07fb1907ccc610c8e6db254f2461b7.png","tv_点赞":"f85c354995bd99e28fc76c869bfe42ba6438eff4.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_睡着":"8b196675b53af58264f383c50ad0945048290b33.png","tv_色":"61822c7e9aae5da76475e7892534545336b23a6f.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_无奈":"ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_流汗":"cead1c351ab8d79e9f369605beb90148db0fbed3.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_抓狂":"fe31c08edad661d63762b04e17b8d5ae3c71a757.png","tv_黑人问号":"45821a01f51bc867da9edbaa2e070410819a95b2.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_打脸":"56ab10b624063e966bfcb76ea5dc4794d87dfd47.png","tv_闭嘴":"c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png","tv_鄙视":"6e72339f346a692a495b123174b49e4e8e781303.png","tv_腼腆":"89712c0d4af73e67f89e35cbc518420380a7f6f4.png","tv_馋":"fc7e829b845c43c623c8b490ee3602b7f0e76a31.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_生病":"8b0ec90e6b86771092a498c54f09fc94621c1900.png","tv_流鼻血":"c32d39db2737f89b904ca32700d140a9241b0767.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_流泪":"7e71cde7858f0cd50d74b0264aa26db612a8a167.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_皱眉":"72ccad6679fea0d14cce648b4d818e09b8ffea2d.png","tv_鬼脸":"0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png","tv_调侃":"4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png","tv_目瞪口呆":"0b8cb81a68de5d5365212c99375e7ace3e7891b7.png"},
+      enableQQ: true,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div class="aplayer no-destroy" data-id="5089993118" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="true"  data-preload="none" data-autoplay="false" data-lrctype="0" muted></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})</script></div></body></html>
